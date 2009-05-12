@@ -1,0 +1,13 @@
+"Id:"
+
+In order to build remv you need the boost libraries installed (see boost.org).
+remv has been tested on linux with boost-1.37 and boost-1.38.
+remv will not compile with boost earlier than 1.36.
+
+To compile and install run
+./configure
+make
+make install
+
+For configure options run configure --help.
+
