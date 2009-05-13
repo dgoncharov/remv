@@ -91,19 +91,21 @@ std::ostream& operator<<(std::ostream& out, options const& opts)
 int main(int argc, char* argv[])
 {
     namespace po = boost::program_options;
-
+    string const exe = fs::path(argv[0]).leaf();
     options opts;
     {
         po::options_description desc(
-            "Usage: " + fs::path(argv[0]).leaf() + " regex format [path] [options]"
+            "Usage: " + exe + " regex format [path] [options]"
             "\n"
-            "\nStarting from #path recursively renames all files and directories"
-            "\nwhich match the regular expression specified by #regex"
-            "\naccording to the format specified by #format."
-            "\nThe boost::regex library is used for regex processing."
+            "\nStarting from #path recursively finds files and directories"
+	    "\nwhich match the regular expression, specified by #regex,"
+            "\nand moves them according to the format, specified by #format."
+    
+            "\n\nThe Boost.Regex library is used for regex processing."
             "\n(See boost.org for details on supported regex syntaxes)."
-            "\nIf path is not specified . is used."
-            "\nTo move all uppercase chars to lowercase chars use \"(\\w+)\" \"\\L\\\\1\""
+            "\n\nIf path is not specified . is used."
+
+            "\n\nExamples: Moving all uppercase chars to lowercase chars: " + exe  + " \"(\\w+)\" \"\\L\\\\1\""
             "\n\nOptions");
     
         desc.add_options()
@@ -112,11 +114,11 @@ int main(int argc, char* argv[])
             ("version,v",
                 "print the version")
             ("recursive,r",
-                "rename directories recursively")
+                "move directories recursively")
             ("pretend,p",
-                "only show the transformations")
+                "don't actually move")
             ("force,f",
-                "remove existing files with the same names");
+                "overwrite existing files");
 
         po::positional_options_description pos;
         pos.add("regex", 1);
@@ -147,7 +149,7 @@ int main(int argc, char* argv[])
         }
         if (vm.count("version"))
         {
-            cout << "0.11" << endl;
+            cout << "0.12" << endl;
             return 0;
         }
         if (!vm.count("regex")) //TODO: have the lib to report this
