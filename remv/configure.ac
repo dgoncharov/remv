@@ -14,36 +14,17 @@ AC_LANG_CPLUSPLUS
 
 AC_HEADER_STDBOOL
 
+AC_CHECK_HEADERS([\
+    cstdio string iostream stdexcept],,
+    AC_MSG_ERROR([You need to have the C++ standard headers installed]))
 
 BOOST_NOT_FOUND_ERRMSG="You need to install the boost libraries. The boost libraries can be obtained from boost.org"
 
-AC_MSG_CHECKING([for boost/regex.hpp])
-AC_COMPILE_IFELSE([
-#include <boost/regex.hpp>
-],
-    [AC_MSG_RESULT([yes])],
-    [AC_MSG_RESULT([no])
-     AC_MSG_ERROR([boost/regex.hpp not found. $BOOST_NOT_FOUND_ERRMSG])]
-)
-
-#TODO: check filesystem version
-AC_MSG_CHECKING([for boost/filesystem.hpp])
-AC_COMPILE_IFELSE([
-#include <boost/filesystem.hpp>
-],
-    [AC_MSG_RESULT([yes])],
-    [AC_MSG_RESULT([no])
-     AC_MSG_ERROR([boost/filesystem.hpp not found. $BOOST_NOT_FOUND_ERRMSG])]
-)
-
-AC_MSG_CHECKING([for boost/program_options.hpp])
-AC_COMPILE_IFELSE([
-#include <boost/program_options.hpp>
-],
-    [AC_MSG_RESULT([yes])],
-    [AC_MSG_RESULT([no])
-     AC_MSG_ERROR([boost/program_options.hpp not found. $BOOST_NOT_FOUND_ERRMSG])]
-)
+AC_CHECK_HEADERS([ \
+    boost/filesystem.hpp \
+    boost/regex.hpp \
+    boost/program_options.hpp],,
+    AC_MSG_ERROR([You need to have the boost headers installed]))
 
 AC_MSG_CHECKING([for boost version])
 AC_COMPILE_IFELSE([
