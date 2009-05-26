@@ -79,6 +79,25 @@ LIBS="$save_LIBS"
 
 LIBS="-lboost_regex -lboost_filesystem -lboost_program_options $LIBS"
 
+AC_MSG_CHECKING(whether to build with debug information)
+
+# create configure parameter and init variable $debuger
+debuger=no
+AC_ARG_ENABLE(
+    debug,
+    AC_HELP_STRING([--enable-debug],[enable debugging (def=no)]),
+    debuger="$enableval")
+AC_MSG_RESULT($debuger)
+
+if test x"$debuger" = x"yes"; then
+    AC_DEFINE(_DEBUG,, [Enable debugging])
+    CXXFLAGS=`echo $CXXFLAGS | sed -e "s/-O@<:@0-3@:>@//g; s/-Os//g; s/-fomit-frame-pointer//g"`
+    CXXFLAGS="$CXXFLAGS -D_DEBUG -O0 -g -Wall -Werror"
+else
+    AC_DEFINE(NDEBUG,, [Disable debugging])
+    CXXFLAGS="$CXXFLAGS -DNDEBUG -Wall -Werror"
+fi
+
 AC_CONFIG_FILES([Makefile])
 
 AC_OUTPUT
