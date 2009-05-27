@@ -18,37 +18,13 @@ AC_CHECK_HEADERS([\
     cstdio string iostream stdexcept],,
     AC_MSG_ERROR([You need to have the C++ standard headers installed]))
 
+BOOST_NOT_FOUND_ERRMSG="You need to install the boost libraries. The boost libraries can be obtained from boost.org"
+
 AC_CHECK_HEADERS([ \
     boost/filesystem.hpp \
     boost/regex.hpp \
     boost/program_options.hpp],,
     AC_MSG_ERROR([You need to have the boost headers installed]))
-
-AH_TOP([
-#ifndef CONFIG_H
-#define CONFIG_H])
-AH_BOTTOM([#endif /* CONFIG_H */])
-
-CXXFLAGS="$CXXFLAGS -include config.h"
-
-AC_MSG_CHECKING(whether to build with debug information)
-debuger=no
-AC_ARG_ENABLE(
-    debug,
-    AC_HELP_STRING([--enable-debug],[enable debugging (def=no)]),
-    debuger="$enableval")
-AC_MSG_RESULT($debuger)
-
-if test x"$debuger" = x"yes"; then
-    AC_DEFINE(_DEBUG,, [Enable debugging])
-    CXXFLAGS=`echo $CXXFLAGS | sed -e "s/-O@<:@0-3@:>@//g; s/-Os//g; s/-fomit-frame-pointer//g"`
-    CXXFLAGS="$CXXFLAGS -O0 -g -Wall -Werror"
-else
-    AC_DEFINE(NDEBUG,, [Disable debugging])
-    CXXFLAGS="$CXXFLAGS -Wall -Werror"
-fi
-
-BOOST_NOT_FOUND_ERRMSG="You need to install the boost libraries. The boost libraries can be obtained from boost.org"
 
 AC_MSG_CHECKING([for boost version])
 AC_COMPILE_IFELSE([
@@ -101,6 +77,31 @@ int main() {boost::program_options::options_description r(""); return 0;}
      AC_MSG_ERROR([Can't find the boost_program_options library. $BOOST_NOT_FOUND_ERRMSG])]
 )
 LIBS="$save_LIBS -lboost_program_options"
+
+
+AH_TOP([
+#ifndef CONFIG_H
+#define CONFIG_H])
+AH_BOTTOM([#endif /* CONFIG_H */])
+CXXFLAGS="$CXXFLAGS -include config.h"
+
+AC_MSG_CHECKING(whether to build with debug information)
+debuger=no
+AC_ARG_ENABLE(
+    debug,
+    AC_HELP_STRING([--enable-debug],[enable debugging (def=no)]),
+    debuger="$enableval")
+AC_MSG_RESULT($debuger)
+
+if test x"$debuger" = x"yes"; then
+    AC_DEFINE(_DEBUG,, [Enable debugging])
+    CXXFLAGS=`echo $CXXFLAGS | sed -e "s/-O@<:@0-3@:>@//g; s/-Os//g; s/-fomit-frame-pointer//g"`
+    CXXFLAGS="$CXXFLAGS -O0 -g -Wall -Werror"
+else
+    AC_DEFINE(NDEBUG,, [Disable debugging])
+    CXXFLAGS="$CXXFLAGS -Wall -Werror"
+fi
+
 
 AC_CONFIG_FILES([Makefile])
 
