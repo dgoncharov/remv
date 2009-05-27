@@ -24,6 +24,12 @@ AC_CHECK_HEADERS([ \
     boost/program_options.hpp],,
     AC_MSG_ERROR([You need to have the boost headers installed]))
 
+AH_TOP([
+#ifndef CONFIG_H
+#define CONFIG_H])
+AH_BOTTOM([#endif /* CONFIG_H */])
+
+
 AC_MSG_CHECKING(whether to build with debug information)
 debuger=no
 AC_ARG_ENABLE(
