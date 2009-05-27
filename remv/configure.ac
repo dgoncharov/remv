@@ -18,6 +18,18 @@ AC_CHECK_HEADERS([\
     cstdio string iostream stdexcept],,
     AC_MSG_ERROR([You need to have the C++ standard headers installed]))
 
+AC_ARG_WITH(boost,
+AC_HELP_STRING(
+    [--with-boost=prefix],
+    [boost install directory]),
+    boost_pathset=yes,
+    boost_pathset=no)
+
+if test $boost_pathset = yes ; then
+    CXXFLAGS="$CXXFLAGS -I$with_boost/include"
+    LDFLAGS="$LDFLAGS -L$with_boost/lib"
+fi
+
 BOOST_NOT_FOUND_ERRMSG="You need to install the boost libraries. The boost libraries can be obtained from boost.org"
 
 AC_CHECK_HEADERS([ \
