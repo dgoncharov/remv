@@ -149,7 +149,7 @@ int main(int argc, char* argv[])
         }
         if (vm.count("version"))
         {
-            cout << "0.12" << endl;
+            cout << VERSION << endl;
             return 0;
         }
         if (!vm.count("regex")) //TODO: have the lib to report this
