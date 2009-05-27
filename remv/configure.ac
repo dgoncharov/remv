@@ -18,7 +18,7 @@ AC_CHECK_HEADERS([\
     cstdio string iostream stdexcept],,
     AC_MSG_ERROR([You need to have the C++ standard headers installed]))
 
-#BOOST_NOT_FOUND_ERRMSG="You need to install the boost libraries. The boost libraries can be obtained from boost.org"
+BOOST_NOT_FOUND_ERRMSG="You need to install the boost libraries. The boost libraries can be obtained from boost.org"
 
 AC_CHECK_HEADERS([ \
     boost/filesystem.hpp \
@@ -39,54 +39,46 @@ AC_COMPILE_IFELSE([
      AC_MSG_ERROR([Your version of the boost libraries is not supported. Update your boost libraries to at least 1_37. The boost libraries can be obtained from boost.org])]
 )
 
-AC_CHECK_LIB(boost_regex, main, , [AC_MSG_ERROR([You need to have the boost regex library installed])])
-AC_CHECK_LIB(boost_filesystem, main, , [AC_MSG_ERROR([You need to have the boost regex filesystem installed])])
-AC_CHECK_LIB(boost_program_options, main, , [AC_MSG_ERROR([You need to have the boost program options library installed])])
-
-#save_LIBS="$LIBS"
-#LIBS="$LIBS -lboost_regex"
-#AC_MSG_CHECKING([for boost.regex library])
-#AC_LINK_IFELSE([
+save_LIBS="$LIBS"
+LIBS="$LIBS -lboost_regex"
+AC_MSG_CHECKING([for boost.regex library])
+AC_LINK_IFELSE([
 #include <boost/regex.hpp>
-#int main() {boost::regex r(""); return 0;}
-#],
-#    [AC_MSG_RESULT([-lboost_regex])],
-#    [AC_MSG_RESULT([not found])
-#     AC_MSG_ERROR([Can't find the boost_regex library. $BOOST_NOT_FOUND_ERRMSG])]
-#)
-#LIBS="$save_LIBS"
+int main() {boost::regex r(""); return 0;}
+],
+    [AC_MSG_RESULT([-lboost_regex])],
+    [AC_MSG_RESULT([not found])
+     AC_MSG_ERROR([Can't find the boost_regex library. $BOOST_NOT_FOUND_ERRMSG])]
+)
+LIBS="$save_LIBS -lboost_regex"
 
-#save_LIBS="$LIBS"
-#LIBS="$LIBS -lboost_filesystem"
-#AC_MSG_CHECKING([for boost.filesystem library])
-#AC_LINK_IFELSE([
+save_LIBS="$LIBS"
+LIBS="$LIBS -lboost_filesystem"
+AC_MSG_CHECKING([for boost.filesystem library])
+AC_LINK_IFELSE([
 #include <boost/filesystem.hpp>
-#int main() {boost::filesystem::path r(""); return 0;}
-#],
-#    [AC_MSG_RESULT([-lboost_filesystem])],
-#    [AC_MSG_RESULT([not found])
-#     AC_MSG_ERROR([Can't find the boost_filesystem library. $BOOST_NOT_FOUND_ERRMSG])]
-#)
+int main() {boost::filesystem::path r(""); return 0;}
+],
+    [AC_MSG_RESULT([-lboost_filesystem])],
+    [AC_MSG_RESULT([not found])
+     AC_MSG_ERROR([Can't find the boost_filesystem library. $BOOST_NOT_FOUND_ERRMSG])]
+)
+LIBS="$save_LIBS -lboost_filesystem"
 
-#save_LIBS="$LIBS"
-#LIBS="$LIBS -lboost_program_options"
-#AC_MSG_CHECKING([for boost.program_options library])
-#AC_LINK_IFELSE([
+save_LIBS="$LIBS"
+LIBS="$LIBS -lboost_program_options"
+AC_MSG_CHECKING([for boost.program_options library])
+AC_LINK_IFELSE([
 #include <boost/program_options.hpp>
-#int main() {boost::program_options::options_description r(""); return 0;}
-#],
-#    [AC_MSG_RESULT([-lboost_program_options])],
-#    [AC_MSG_RESULT([not found])
-#     AC_MSG_ERROR([Can't find the boost_program_options library. $BOOST_NOT_FOUND_ERRMSG])]
-#)
-#LIBS="$save_LIBS"
-
-#LIBS="-lboost_regex -lboost_filesystem -lboost_program_options $LIBS"
-
+int main() {boost::program_options::options_description r(""); return 0;}
+],
+    [AC_MSG_RESULT([-lboost_program_options])],
+    [AC_MSG_RESULT([not found])
+     AC_MSG_ERROR([Can't find the boost_program_options library. $BOOST_NOT_FOUND_ERRMSG])]
+)
+LIBS="$save_LIBS -lboost_program_options"
 
 AC_MSG_CHECKING(whether to build with debug information)
-
-# create configure parameter and init variable $debuger
 debuger=no
 AC_ARG_ENABLE(
     debug,
