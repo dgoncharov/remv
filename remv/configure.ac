@@ -29,6 +29,7 @@ AH_TOP([
 #define CONFIG_H])
 AH_BOTTOM([#endif /* CONFIG_H */])
 
+CXXFLAGS="$CXXFLAGS -include config.h"
 
 AC_MSG_CHECKING(whether to build with debug information)
 debuger=no
@@ -41,10 +42,10 @@ AC_MSG_RESULT($debuger)
 if test x"$debuger" = x"yes"; then
     AC_DEFINE(_DEBUG,, [Enable debugging])
     CXXFLAGS=`echo $CXXFLAGS | sed -e "s/-O@<:@0-3@:>@//g; s/-Os//g; s/-fomit-frame-pointer//g"`
-    CXXFLAGS="$CXXFLAGS -D_DEBUG -O0 -g -Wall -Werror"
+    CXXFLAGS="$CXXFLAGS -O0 -g -Wall -Werror"
 else
     AC_DEFINE(NDEBUG,, [Disable debugging])
-    CXXFLAGS="$CXXFLAGS -DNDEBUG -Wall -Werror"
+    CXXFLAGS="$CXXFLAGS -Wall -Werror"
 fi
 
 BOOST_NOT_FOUND_ERRMSG="You need to install the boost libraries. The boost libraries can be obtained from boost.org"
