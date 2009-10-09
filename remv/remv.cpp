@@ -111,16 +111,16 @@ int main(int argc, char* argv[])
                 "\n\nOptions");
         
             desc.add_options()
-                ("help,h",
-                    "this help message")
-                ("version,v",
-                    "print the version")
                 ("recursive,r",
                     "move directories recursively")
                 ("pretend,p",
                     "don't actually move")
                 ("force,f",
-                    "overwrite existing files");
+                    "overwrite existing files")
+                ("help,h",
+                    "display help info")
+                ("version,v",
+                    "display version info");
     
             po::positional_options_description pos;
             pos.add("regex", 1);
