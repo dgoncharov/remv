@@ -93,7 +93,7 @@ int main(int argc, char* argv[])
     try
     {
         namespace po = boost::program_options;
-        string const exe = fs::path(argv[0]).leaf();
+        string const& exe = fs::path(argv[0]).leaf();
         options opts;
         {
             po::options_description desc(
