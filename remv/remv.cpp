@@ -99,9 +99,9 @@ int main(int argc, char* argv[])
             po::options_description desc(
                 "Usage: " + exe + " regex format [path] [options]"
                 "\n"
-                "\nStarting from #path recursively finds files and directories"
-    	    "\nwhich match the regular expression, specified by #regex,"
-                "\nand moves them according to the format, specified by #format."
+                "\nStarting from the specified path finds files and directories"
+    	        "\nwhich match the regular expression"
+                "\nand moves them according to the given format."
         
                 "\n\nThe Boost.Regex library is used for regex processing."
                 "\n(See boost.org for details on supported regex syntaxes)."
@@ -164,7 +164,6 @@ int main(int argc, char* argv[])
                 std::cerr << fs::path(argv[0]).leaf() << ": missing format operand" << endl;
                 return 2;
             }
-            cout << opts << endl;
         }
     
         boost::regex const r(opts.regex);
