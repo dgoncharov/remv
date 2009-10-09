@@ -28,4 +28,14 @@ If no --recursive specified only the currect directory is searched.
 If --pretend is specified remv show which files and directories would be moved,
 but will not actually move them.
 
+Bugs:
+Currently a regex or format cannot start with a dash. remv'll erroneously interpret that as an option.
+A workaround is to escape the regex or format with a backslash.
+e.g.
+$ ls
+one-smth
+$ ./remv -p "-smth" "+smth"
+unknown option -s
+$ remv -p \"-smth\" "+smth"
+./one-smth -> ./one+smth
 
