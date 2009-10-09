@@ -1,0 +1,54 @@
+.TH "remv" "1" "09 oct 2009"  "remv @VERSION@" "User commands"
+
+.SH "NAME"
+.LP
+remv \- moves files and directories by regular expressions
+
+.SH "SYNOPSIS"
+.LP
+remv regex format [path] [options]
+
+.SH "DESCRIPTION"
+.LP
+Starting from the specified path finds files and directories
+which match the regular expression
+and moves them according to the given format.
+
+The Boost.Regex library is used for regex processing.
+(See boost.org for details on supported regex syntaxes).
+
+If path is not specified . is used.
+
+.SH "OPTIONS"
+.LP
+.TP
+.BR \-r ", " \-\-recursive
+move directories recursively
+.TP
+.BR \-p ", " \-\-pretend
+don't actually move
+.TP
+.BR \-f ", " \-\-force
+overwrite existing files
+.TP
+.BR \-v ", " \-\-version
+display version info
+.TP
+.BR \-h ", " \-\-help
+display help info
+
+.SH "EXAMPLES"
+.LP
+Moving all uppercase chars to lowercase chars: remv "(\\w\+)" "\\L\\\\1"
+
+.SH "AUTHORS"
+.LP
+.nf
+Dmitry Goncharov <dgoncharov@users.sourceforge.net>
+.fi
+
+.SH "COPYRIGHT"
+.LP
+Copyright (C) 2009 Dmitry Goncharov.
+Distributed under the BSD license.
+

@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 AC_PREREQ([2.63])
 AC_INIT([], [], [dgoncharov@users.sourceforge.net])
-AM_INIT_AUTOMAKE([remv], ["0.14"]) 
+AM_INIT_AUTOMAKE([remv], ["0.15"]) 
 AC_CONFIG_SRCDIR([remv.cpp])
 AC_CONFIG_HEADERS([config.h])
 
@@ -114,7 +114,7 @@ else
     CXXFLAGS="$CXXFLAGS -Wall -Werror"
 fi
 
-AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([Makefile doc/Makefile doc/remv.1])
 
 AC_OUTPUT
 
