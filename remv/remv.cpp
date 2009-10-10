@@ -99,22 +99,22 @@ int main(int argc, char* argv[])
             po::options_description desc(
                 "Usage: " + exe + " regex format [path] [options]"
                 "\n"
-                "\nStarting from the specified path finds files and directories"
-    	        "\nwhich match the regular expression"
-                "\nand moves them according to the given format."
+                "\nStarting from the specified path finds files and directories nwhich match the regular expression nand moves them according to the given format."
         
                 "\n\nThe Boost.Regex library is used for regex processing."
-                "\n(See boost.org for details on supported regex syntaxes)."
-                "\n\nIf path is not specified . is used."
+                "\nTo refer to marked subexpressions use variables $1, \\1, etc."
+                "\nSee boost.org for details on supported regex syntaxes."
+                "\n\nIf path is not specified remv starts from the current directory."
     
                 "\n\nExamples: Moving all uppercase chars to lowercase chars: " + exe  + " \"(\\w+)\" \"\\L\\\\1\""
+                "\nTo pass a regex or format which starts with a dash escape the quotation marks with a backslash: remv \\\"-myregex\\\" \\\"-myformat\\\""
                 "\n\nOptions");
         
             desc.add_options()
                 ("recursive,r",
                     "move directories recursively")
                 ("pretend,p",
-                    "don't actually move")
+                    "display which files and directories would be moved, but do not actually move them")
                 ("force,f",
                     "overwrite existing files")
                 ("help,h",

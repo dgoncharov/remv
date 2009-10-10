@@ -1,43 +1,6 @@
 "Id:"
 
-remv is an utility which finds files and directories that match a regular expression
-and moves them according to the format, specified by the user.
-
-The official homepage of remv is http://sourceforge.net/projects/remv.
-
-Usage: remv regex format [path] [options]
-
-v1.0
-Starting from #path recursively renames all files and directories
-which match the regular expression specified by #regex
-according to the format specified by #format.
-The boost::regex library is used for regex processing.
-(See boost.org for details on supported regex syntaxes).
-If path is not specified . is used.
-To move all uppercase chars to lowercase chars use "(\w+)" "\L\\1"
-
-Options:
-  -h [ --help ]         this help message
-  -v [ --version ]      print the version
-  -r [ --recursive ]    rename directories recursively
-  -p [ --pretend ]      only show the transformations
-
-A regular expression and format have to be specified.
-If path is not specified the current directory is used by default.
-If no --recursive specified only the currect directory is searched.
-If --pretend is specified remv show which files and directories would be moved,
-but will not actually move them.
-
-Bugs:
-Currently a regex or format cannot start with a dash. remv'll erroneously interpret that as an option.
-A workaround is to escape the regex or format with a backslash.
-e.g.
-$ ls
-one-smth
-$ ./remv -p "-smth" "+smth"
-unknown option -s
-$ remv -p \"-smth\" "+smth"
-./one-smth -> ./one+smth
+See the man page for description.
 
 Tested on
     - amd64 freebsd 7.2 gcc-4.1.2

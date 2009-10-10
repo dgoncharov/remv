@@ -10,14 +10,15 @@ remv regex format [path] [options]
 
 .SH "DESCRIPTION"
 .LP
-Starting from the specified path finds files and directories
-which match the regular expression
-and moves them according to the given format.
+Starting from the specified path finds files and directories which match the regular expression and moves them according to the given format.
 
 The Boost.Regex library is used for regex processing.
-(See boost.org for details on supported regex syntaxes).
+.br
+To refer to marked subexpressions use variables $1, \\1, etc.
+.br
+See boost.org for details on supported regex syntaxes.
 
-If path is not specified . is used.
+If path is not specified remv starts from the current directory.
 
 .SH "OPTIONS"
 .LP
@@ -26,7 +27,7 @@ If path is not specified . is used.
 move directories recursively
 .TP
 .BR \-p ", " \-\-pretend
-don't actually move
+display which files and directories would be moved, but do not actually move them
 .TP
 .BR \-f ", " \-\-force
 overwrite existing files
@@ -40,6 +41,8 @@ display help info
 .SH "EXAMPLES"
 .LP
 Moving all uppercase chars to lowercase chars: remv "(\\w\+)" "\\L\\\\1"
+.br
+To pass a regex or format which starts with a dash escape the quotation marks with a backslash: remv \\"-myregex\\" \\"-myformat\\"
 
 .SH "AUTHORS"
 .LP
