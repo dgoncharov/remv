@@ -99,7 +99,7 @@ int main(int argc, char* argv[])
             po::options_description desc(
                 "Usage: " + exe + " regex format [path] [options]"
                 "\n"
-                "\nStarting from the specified path finds files and directories nwhich match the regular expression nand moves them according to the given format."
+                "\nStarting from the specified path finds files and directories which match the regular expression and moves them according to the given format."
         
                 "\n\nThe Boost.Regex library is used for regex processing."
                 "\nTo refer to marked subexpressions use variables $1, \\1, etc."
