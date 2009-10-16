@@ -97,7 +97,7 @@ int main(int argc, char* argv[])
         options opts;
         {
             po::options_description desc(
-                "Usage: " + exe + " regex format [path] [options]"
+                "Usage: " + exe + " [options] regex format [path]"
                 "\n"
                 "\nStarting from the specified path finds files and directories which match the regular expression and moves them according to the given format."
         

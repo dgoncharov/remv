@@ -6,7 +6,7 @@ remv \- moves files and directories by regular expressions
 
 .SH "SYNOPSIS"
 .LP
-remv regex format [path] [options]
+remv [options] regex format [path]
 
 .SH "DESCRIPTION"
 .LP
