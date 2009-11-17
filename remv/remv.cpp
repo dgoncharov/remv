@@ -64,7 +64,7 @@ void moveall(fs::path const& root, boost::regex const& r, string const& fmt, boo
 struct options
 {
     options()
-        : recursive(false)
+        : recursive(false), pretend(false), force(false)
     {}
 
     string regex;
@@ -111,11 +111,11 @@ int main(int argc, char* argv[])
                 "\n\nOptions");
         
             desc.add_options()
-                ("recursive,r",
+                ("recursive,r", po::value<bool>(&opts.recursive)->zero_tokens()->default_value(false),
                     "move directories recursively")
-                ("pretend,p",
+                ("pretend,p", po::value<bool>(&opts.pretend)->zero_tokens()->default_value(false),
                     "display which files and directories would be moved, but do not actually move them")
-                ("force,f",
+                ("force,f", po::value<bool>(&opts.force)->zero_tokens()->default_value(false),
                     "overwrite existing files")
                 ("help,h",
                     "display help info")
@@ -140,9 +140,6 @@ int main(int argc, char* argv[])
             po::variables_map vm;
             po::store(po::command_line_parser(argc, argv).options(all_opts).positional(pos).run(), vm);
             notify(vm);
-            opts.recursive = vm.count("recursive"); //TODO: have the lib to init it.
-            opts.pretend = vm.count("pretend"); //TODO: have the lib to init it.
-            opts.force = vm.count("force"); //TODO: have the lib to init it.
     
             if (vm.count("help"))
             {
@@ -165,7 +162,7 @@ int main(int argc, char* argv[])
                 return 2;
             }
         }
-    
+
         boost::regex const r(opts.regex);
         moveall(opts.path, r, opts.format, opts.recursive, opts.pretend, opts.force);
     }
