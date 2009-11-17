@@ -15,7 +15,7 @@ AC_LANG_CPLUSPLUS
 AC_HEADER_STDBOOL
 
 AC_CHECK_HEADERS([\
-    cstdio string iostream stdexcept],,
+    cerrno cstdio string iostream stdexcept],,
     AC_MSG_ERROR([You need to have the C++ standard headers installed]))
 
 AC_ARG_WITH(boost,

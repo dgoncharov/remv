@@ -5,6 +5,7 @@
 
 // "$Id:"
 
+#include <cerrno>
 #include <cstdio>
 #include <string>
 #include <iostream>
