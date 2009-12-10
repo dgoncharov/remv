@@ -1,7 +1,7 @@
 # "Id:"                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 AC_PREREQ([2.62])
-AC_INIT([], [], [dgoncharov@users.sourceforge.net])
+AC_INIT([], [], [dgoncharov@users.sf.net])
 AM_INIT_AUTOMAKE([remv], ["0.18"]) 
 AC_CONFIG_SRCDIR([remv.cpp])
 AC_CONFIG_HEADERS([config.h])

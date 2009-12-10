@@ -47,7 +47,7 @@ To pass a regex or format which starts with a dash escape the quotation marks wi
 .SH "AUTHORS"
 .LP
 .nf
-Dmitry Goncharov <dgoncharov@users.sourceforge.net>
+Dmitry Goncharov <dgoncharov@users.sf.net>
 .fi
 
 .SH "COPYRIGHT"
