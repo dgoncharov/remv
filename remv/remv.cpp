@@ -1,4 +1,4 @@
-// Copyright (c) 2009 Dmitry Goncharov
+// Copyright (c) 2009, 2010 Dmitry Goncharov
 //
 // Distributed under the BSD License.
 // (See accompanying file COPYING).
@@ -70,7 +70,9 @@ struct options
 
     string regex;
     string format;
-    fs::path path;
+    // The field path cannot be of type fs::path because of a bug in Boost.Filesystem.
+    // See https://svn.boost.org/trac/boost/ticket/3863.
+    string path;
     bool recursive;
     bool pretend;
     bool force;
@@ -81,7 +83,7 @@ std::ostream& operator<<(std::ostream& out, options const& opts)
 {
     out << "regex: " << opts.regex
         << ", format: " << opts.format
-        << ", path: " << opts.path.string()
+        << ", path: " << opts.path
         << ", recursive: " << opts.recursive
         << ", pretend: " << opts.pretend
         << ", force: " << opts.force
@@ -132,7 +134,7 @@ int main(int argc, char* argv[])
             hidden.add_options()
                 ("regex", po::value<string>(&opts.regex))
                 ("format", po::value<string>(&opts.format))
-                ("path", po::value<fs::path>(&opts.path)->default_value(fs::path(".")));
+                ("path", po::value<string>(&opts.path)->default_value("."));
     
             po::options_description all_opts("All options");
             all_opts.add(desc);
