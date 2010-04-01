@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 AC_PREREQ([2.62])
 AC_INIT([], [], [dgoncharov@users.sf.net])
-AM_INIT_AUTOMAKE([remv], ["0.19"]) 
+AM_INIT_AUTOMAKE([remv], ["0.20"]) 
 AC_CONFIG_SRCDIR([remv.cpp])
 AC_CONFIG_HEADERS([config.h])
 

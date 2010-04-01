@@ -42,7 +42,7 @@ display help info
 .LP
 Moving all uppercase chars to lowercase chars: remv "(\\w\+)" "\\L\\\\1"
 .br
-To pass a regex or format which starts with a dash escape the quotation marks with a backslash: remv \\"-myregex\\" \\"-myformat\\"
+To pass a regex or format which starts with a dash escape it with a double backslash: remv \\\\-myregex \\\\-myformat
 
 .SH "AUTHORS"
 .LP
