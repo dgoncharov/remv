@@ -11,14 +11,16 @@ remv [options] regex format [path]
 .SH "DESCRIPTION"
 .LP
 Starting from the specified path finds files and directories which match the regular expression and moves them according to the given format.
+.br
+Path, regex and format can be utf-8 strings.
+.br
+To refer to marked subexpressions use variables $1, \\1, etc.
+
+If path is not specified remv starts from the current directory.
 
 The Boost.Regex library is used for regex processing.
 .br
-To refer to marked subexpressions use variables $1, \\1, etc.
-.br
 See boost.org for details on supported regex syntaxes.
-
-If path is not specified remv starts from the current directory.
 
 .SH "OPTIONS"
 .LP

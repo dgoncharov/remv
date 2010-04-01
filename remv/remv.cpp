@@ -103,11 +103,11 @@ int main(int argc, char* argv[])
                 "Usage: " + exe + " [options] regex format [path]"
                 "\n"
                 "\nStarting from the specified path finds files and directories which match the regular expression and moves them according to the given format."
-        
-                "\n\nThe Boost.Regex library is used for regex processing."
+                "\nPath, regex and format can be utf-8 strings."
                 "\nTo refer to marked subexpressions use variables $1, \\1, etc."
-                "\nSee boost.org for details on supported regex syntaxes."
                 "\n\nIf path is not specified remv starts from the current directory."
+                "\n\nThe Boost.Regex library is used for regex processing."
+                "\nSee boost.org for details on supported regex syntaxes."
     
                 "\n\nExamples: Moving all uppercase chars to lowercase chars: " + exe  + " \"(\\w+)\" \"\\L\\\\1\""
                 "\nTo pass a regex or format which starts with a dash escape the quotation marks with a backslash: remv \\\"-myregex\\\" \\\"-myformat\\\""
