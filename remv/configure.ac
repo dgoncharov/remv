@@ -4,7 +4,7 @@ AC_PREREQ([2.62])
 AC_INIT([remv], 0.20, [dgoncharov@users.sf.net])
 AC_CONFIG_AUX_DIR(config)
 AM_INIT_AUTOMAKE
-AC_CONFIG_SRCDIR([remv.cpp])
+AC_CONFIG_SRCDIR([src/remv.cpp])
 AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.
@@ -116,7 +116,7 @@ else
     CXXFLAGS="$CXXFLAGS -Wall -Werror"
 fi
 
-AC_CONFIG_FILES([Makefile doc/Makefile doc/remv.1])
+AC_CONFIG_FILES([Makefile src/Makefile doc/Makefile doc/remv.1])
 
 AC_OUTPUT
 
