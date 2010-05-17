@@ -1,18 +1,20 @@
 # "Id:"                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 AC_PREREQ([2.62])
-AC_INIT([], [], [dgoncharov@users.sf.net])
-AM_INIT_AUTOMAKE([remv], ["0.20"]) 
+AC_INIT([remv], 0.20, [dgoncharov@users.sf.net])
+AC_CONFIG_AUX_DIR(config)
+AM_INIT_AUTOMAKE
 AC_CONFIG_SRCDIR([remv.cpp])
 AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.
 AC_PROG_CC
 AC_PROG_CXX
-AC_PROG_RANLIB
 AC_LANG_CPLUSPLUS
 
 AC_HEADER_STDBOOL
+
+AC_CHECK_FUNCS([strerror])
 
 AC_CHECK_HEADERS([\
     cerrno cstdio string iostream stdexcept],,

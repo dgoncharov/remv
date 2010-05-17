@@ -1,8 +1,8 @@
 #!/bin/sh
 
+mkdir -p config &&
 aclocal &&
 autoheader &&
-libtoolize &&
 automake --add-missing &&
 autoconf
 
