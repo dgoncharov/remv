@@ -110,7 +110,7 @@ int main(int argc, char* argv[])
                 "\nSee boost.org for details on supported regex syntaxes."
     
                 "\n\nExamples: Moving all uppercase chars to lowercase chars: " + exe  + " \"(\\w+)\" \"\\L\\\\1\""
-                "\nTo pass a regex or format which starts with a dash escape the quotation marks with a backslash: remv \\\"-myregex\\\" \\\"-myformat\\\""
+                "\nTo pass a regex or format which starts with a dash escape it with a double backslash: remv \\\\-myregex \\\\-myformat"
                 "\n\nOptions");
         
             desc.add_options()
