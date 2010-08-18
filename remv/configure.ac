@@ -54,7 +54,7 @@ AC_COMPILE_IFELSE([
 )
 
 save_LIBS="$LIBS"
-LIBS="$LIBS -lboost_regex"
+LIBS="-lboost_regex"
 AC_MSG_CHECKING([for boost.regex library])
 AC_LINK_IFELSE([
 #include <boost/regex.hpp>
@@ -66,8 +66,10 @@ int main() {boost::regex r(""); return 0;}
 )
 LIBS="$save_LIBS -lboost_regex"
 
+save_LDFLAGS="$LDFLAGS"
+LDFLAGS="$LDFLAGS -Wl,--no-as-needed"
 save_LIBS="$LIBS"
-LIBS="$LIBS -lboost_filesystem"
+LIBS="-lboost_filesystem"
 AC_MSG_CHECKING([for boost.filesystem library])
 AC_LINK_IFELSE([
 #include <boost/filesystem.hpp>
@@ -78,9 +80,10 @@ int main() {boost::filesystem::path r(""); return 0;}
      AC_MSG_ERROR([Can't find the boost_filesystem library. $BOOST_NOT_FOUND_ERRMSG])]
 )
 LIBS="$save_LIBS -lboost_filesystem"
+LDFLAGS="$save_LDFLAGS"
 
 save_LIBS="$LIBS"
-LIBS="$LIBS -lboost_program_options"
+LIBS="-lboost_program_options"
 AC_MSG_CHECKING([for boost.program_options library])
 AC_LINK_IFELSE([
 #include <boost/program_options.hpp>
