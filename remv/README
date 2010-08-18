@@ -7,6 +7,8 @@ To compile and install run
 make
 make install
 
+Type make check to run the test suite.
+
 For configure options run configure --help.
 
 See the man page for description.

@@ -2,5 +2,5 @@
 
 EXTRA_DIST = bootstrap.sh
 
-SUBDIRS = src doc
+SUBDIRS = src doc test
 

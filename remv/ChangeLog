@@ -1,3 +1,6 @@
+0.21
+    2010.08.18 Initial test suite.
+
 0.20
     2010.05.17 autotools related fixes and refactoring.
     2010.04.01 Docfix. Fixed description of passing a regex that starts with
