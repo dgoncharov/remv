@@ -1,3 +1,7 @@
+0.22
+    2010.08.18 The --as-needed ld flag causes the test for boost_filesystem
+	fail. Added a workaround.
+
 0.21
     2010.08.18 Initial test suite.
 
