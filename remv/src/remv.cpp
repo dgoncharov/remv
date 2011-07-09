@@ -1,4 +1,4 @@
-// Copyright (c) 2009, 2010 Dmitry Goncharov
+// Copyright (c) 2009, 2010, 2011 Dmitry Goncharov
 //
 // Distributed under the BSD License.
 // (See accompanying file COPYING).
@@ -6,10 +6,11 @@
 // "$Id:"
 
 #include <cerrno>
-#include <cstdio>
+#include <cstring>
 #include <string>
 #include <iostream>
 #include <stdexcept>
+#include <exception>
 #include <boost/filesystem.hpp>
 #include <boost/regex.hpp>
 #include <boost/program_options.hpp>
@@ -22,7 +23,7 @@ namespace fs = boost::filesystem;
 
 void move(fs::path const& p, boost::regex const& r, string const& fmt, bool pretend, bool force)
 {
-    string const f = p.filename();
+    string const f = p.filename().native();
     string const newf = boost::regex_replace(f, r, fmt, boost::match_default);
     if (f != newf)
     {
@@ -30,15 +31,8 @@ void move(fs::path const& p, boost::regex const& r, string const& fmt, bool pret
         cout << p << " -> " << newp << endl;
         if (!pretend)
         {
-            if (force)
-            {
-                int const s = std::rename(p.string().c_str(), newp.string().c_str());
-                if (s < 0)
-                {
-                    cerr << "Cannot rename " << p << endl;
-                    throw std::runtime_error(std::strerror(errno));
-                }
-            }
+            if (!force && fs::exists(newp))
+                throw std::runtime_error(std::strerror(EEXIST));
             else
                 fs::rename(p, newp);
         }
@@ -96,14 +90,14 @@ int main(int argc, char* argv[])
     try
     {
         namespace po = boost::program_options;
-        string const& exe = fs::path(argv[0]).leaf();
+        string const& exe = fs::path(argv[0]).leaf().native();
         options opts;
         {
             po::options_description desc(
                 "Usage: " + exe + " [options] regex format [path]"
                 "\n"
                 "\nStarting from the specified path finds files and directories which match the regular expression and moves them according to the given format."
-                "\nPath, regex and format can be utf-8 strings."
+                "\nPath, regex and format can be ascii or utf-8 strings."
                 "\nTo refer to marked subexpressions use variables $1, \\1, etc."
                 "\n\nIf path is not specified remv starts from the current directory."
                 "\n\nThe Boost.Regex library is used for regex processing."
@@ -176,7 +170,7 @@ int main(int argc, char* argv[])
     }
     catch (...)
     {
-        cerr << "unknown exception" << endl;
+        cerr << "unknown error" << endl;
         return 4;
     }
     return 0;
