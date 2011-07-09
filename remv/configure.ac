@@ -41,13 +41,13 @@ AC_CHECK_HEADERS([ \
     AC_MSG_ERROR([You need to have the boost headers installed]))
 
 AC_MSG_CHECKING([for boost version])
-AC_COMPILE_IFELSE([
+AC_COMPILE_IFELSE([AC_LANG_SOURCE([
 #define BOOST_MIN_VERSION 103700
 #include <boost/version.hpp>
 #if BOOST_VERSION < BOOST_MIN_VERSION
 #error this version of boost is not supported
 #endif
-],
+])],
     [AC_MSG_RESULT([yes])],
     [AC_MSG_RESULT([no])
      AC_MSG_ERROR([Your version of the boost libraries is not supported. Update your boost libraries to at least 1_37. The boost libraries can be obtained from boost.org])]
@@ -56,13 +56,13 @@ AC_COMPILE_IFELSE([
 save_LIBS="$LIBS"
 LIBS="-lboost_regex"
 AC_MSG_CHECKING([for boost.regex library])
-AC_LINK_IFELSE([
+AC_LINK_IFELSE([AC_LANG_SOURCE([
 #include <boost/regex.hpp>
 int main() {boost::regex r(""); return 0;}
-],
+])],
     [AC_MSG_RESULT([-lboost_regex])],
     [AC_MSG_RESULT([not found])
-     AC_MSG_ERROR([Can't find the boost_regex library. $BOOST_NOT_FOUND_ERRMSG])]
+     AC_MSG_ERROR([Cannot find the boost_regex library. $BOOST_NOT_FOUND_ERRMSG])]
 )
 LIBS="$save_LIBS -lboost_regex"
 
@@ -71,13 +71,13 @@ LDFLAGS="$LDFLAGS -Wl,--no-as-needed"
 save_LIBS="$LIBS"
 LIBS="-lboost_filesystem"
 AC_MSG_CHECKING([for boost.filesystem library])
-AC_LINK_IFELSE([
+AC_LINK_IFELSE([AC_LANG_SOURCE([
 #include <boost/filesystem.hpp>
 int main() {boost::filesystem::path r(""); return 0;}
-],
+])],
     [AC_MSG_RESULT([-lboost_filesystem])],
     [AC_MSG_RESULT([not found])
-     AC_MSG_ERROR([Can't find the boost_filesystem library. $BOOST_NOT_FOUND_ERRMSG])]
+     AC_MSG_ERROR([Cannot find the boost_filesystem library. $BOOST_NOT_FOUND_ERRMSG])]
 )
 LIBS="$save_LIBS -lboost_filesystem"
 LDFLAGS="$save_LDFLAGS"
@@ -85,13 +85,13 @@ LDFLAGS="$save_LDFLAGS"
 save_LIBS="$LIBS"
 LIBS="-lboost_program_options"
 AC_MSG_CHECKING([for boost.program_options library])
-AC_LINK_IFELSE([
+AC_LINK_IFELSE([AC_LANG_SOURCE([
 #include <boost/program_options.hpp>
 int main() {boost::program_options::options_description r(""); return 0;}
-],
+])],
     [AC_MSG_RESULT([-lboost_program_options])],
     [AC_MSG_RESULT([not found])
-     AC_MSG_ERROR([Can't find the boost_program_options library. $BOOST_NOT_FOUND_ERRMSG])]
+     AC_MSG_ERROR([Cannot find the boost_program_options library. $BOOST_NOT_FOUND_ERRMSG])]
 )
 LIBS="$save_LIBS -lboost_program_options"
 
