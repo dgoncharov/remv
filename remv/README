@@ -1,5 +1,5 @@
 In order to build remv you need the boost libraries installed (see boost.org).
-remv has been tested on linux with boost >= 1.37
+remv has been tested on linux and freebsd with boost >= 1.37
 remv will not compile with boost earlier than 1.36.
 
 To compile and install run
@@ -10,10 +10,4 @@ make install
 Type make check to run the test suite.
 
 For configure options run configure --help.
-
 See the man page for description.
-
-Tested on
-    - amd64 freebsd 7.2 gcc-4.1.2, gcc-4.2.1
-    - x86_64 linux 2.6.30-gentoo-r4, 2.6.33-gentoo-r2, gcc-4.4.1, gcc Gentoo 4.4.3-r2
-
