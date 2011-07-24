@@ -9,6 +9,7 @@
 #include <cstring>
 #include <string>
 #include <iostream>
+#include <typeinfo>
 #include <stdexcept>
 #include <exception>
 #include <boost/filesystem.hpp>
@@ -167,7 +168,7 @@ int main(int argc, char* argv[])
     }
     catch (std::exception const& ex)
     {
-        cerr << ex.what() << endl;
+        cerr << typeid(ex).name() << ": " << ex.what() << endl;
         return 3;
     }
     catch (...)
