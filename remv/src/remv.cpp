@@ -148,14 +148,16 @@ int main(int argc, char* argv[])
                 cout << VERSION << endl;
                 return 0;
             }
-            if (!vm.count("regex")) //TODO: have the lib to report this
+            // fs::path stream out operator adds double quotes around the path.
+            // Use native() to avoid that.
+            if (!vm.count("regex"))
             {
-                std::cerr << fs::path(argv[0]).leaf() << ": missing regex operand" << endl;
+                std::cerr << fs::path(argv[0]).leaf().native() << ": missing regex operand" << endl;
                 return 1;
             }
             if (!vm.count("format"))
             {
-                std::cerr << fs::path(argv[0]).leaf() << ": missing format operand" << endl;
+                std::cerr << fs::path(argv[0]).leaf().native() << ": missing format operand" << endl;
                 return 2;
             }
         }
