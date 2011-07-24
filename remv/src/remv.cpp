@@ -107,7 +107,7 @@ int main(int argc, char* argv[])
                 "\n\nExamples: Moving all uppercase chars to lowercase chars: " + exe  + " \"(\\w+)\" \"\\L\\\\1\""
                 "\nTo pass a regex or format which starts with a dash escape it with a double backslash: remv \\\\-myregex \\\\-myformat"
                 "\n\nOptions");
-        
+
             desc.add_options()
                 ("recursive,r", po::value<bool>(&opts.recursive)->zero_tokens()->default_value(false),
                     "move directories recursively")
@@ -119,26 +119,26 @@ int main(int argc, char* argv[])
                     "display help info")
                 ("version,v",
                     "display version info");
-    
+
             po::positional_options_description pos;
             pos.add("regex", 1);
             pos.add("format", 1);
             pos.add("path", 1);
-    
+
             po::options_description hidden("Hidden options");
             hidden.add_options()
                 ("regex", po::value<string>(&opts.regex))
                 ("format", po::value<string>(&opts.format))
                 ("path", po::value<string>(&opts.path)->default_value("."));
-    
+
             po::options_description all_opts("All options");
             all_opts.add(desc);
             all_opts.add(hidden);
-    
+
             po::variables_map vm;
             po::store(po::command_line_parser(argc, argv).options(all_opts).positional(pos).run(), vm);
             notify(vm);
-    
+
             if (vm.count("help"))
             {
                 cout << desc << endl;
