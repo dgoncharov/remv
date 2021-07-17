@@ -1,0 +1,49 @@
+remv(1)                                                  User commands                                                 remv(1)
+
+NAME
+       remv - moves files and directories by regular expressions
+
+SYNOPSIS
+       remv [options] regex format [path]
+
+DESCRIPTION
+       Starting  from the specified path finds files and directories which match the regular expression and moves them accord‐
+       ing to the given format.
+       Path, regex and format can be utf-8 strings.
+       To refer to marked subexpressions use variables $1, \1, etc.
+
+       If path is not specified remv starts from the current directory.
+
+       The Boost.Regex library is used for regex processing.
+       See boost.org for details on supported regex syntaxes.
+
+OPTIONS
+       -r, --recursive
+              move directories recursively
+
+       -p, --pretend
+              display which files and directories would be moved, but do not actually move them
+
+       -f, --force
+              overwrite existing files
+
+       -v, --version
+              display version info
+
+       -h, --help
+              display help info
+
+EXAMPLES
+       Moving all uppercase chars to lowercase chars: remv "(\w+)" "\L\\1"
+       To pass a regex or format which starts with a dash escape it with a double backslash: remv \\-myregex \\-myformat
+
+AUTHORS
+       Dmitry Goncharov <dgoncharov@users.sf.net>
+
+COPYRIGHT
+       Copyright (C) 2009, 2010 Dmitry Goncharov.  Distributed under the BSD license.
+
+HOMEPAGE
+       remv.sf.net
+
+remv @VERSION@                                            17 May 2010                                                  remv(1)
